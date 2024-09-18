@@ -30,12 +30,14 @@ export default function Signin(){
                     <Button label={"Sign in"}
                         onClick={async ()=>{
                             localStorage.removeItem("token");
+                            localStorage.removeItem("username");
                             const response = await axios.post("http://localhost:3000/api/v1/user/signin", 
                                 {
                                     username,
                                     password
                                 });
                             localStorage.setItem("token", response.data.token);
+                            localStorage.setItem("username", username);
                             navigate("/dashboard")
                         }}
                     /> 
