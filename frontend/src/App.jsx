@@ -4,6 +4,7 @@ import Signin from "./pages/Signin"
 import Signup from "./pages/Signup"
 import Dashboard from "./pages/Dashboard"
 import SendMoney from "./pages/SendMoney"
+import Me from "./pages/Me"
 
 function App() {
 
@@ -11,6 +12,7 @@ function App() {
     <>
       <BrowserRouter>
         <Routes>
+          <Route path="/" element={<Me/>}/>
           <Route path="/signin" element={<Signin/>}  />
           <Route path="/signup" element={<Signup/>}  />
           <Route path="/dashboard" element={<Dashboard/>}  />
