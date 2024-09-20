@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useEffect, useState } from "react"
 import Heading from "../components/Heading"
 import SubHeading from "../components/SubHeading"
 import InputBox from "../components/InputBox"
@@ -11,8 +11,15 @@ import { useNavigate } from "react-router-dom"
 export default function Signin(){
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
-
     const navigate = useNavigate();
+    
+    const loggedIn = localStorage.getItem("token") ;
+
+    useEffect(() => {       //if user is logged in then directly jump to /dashboard
+        if (loggedIn) {
+            navigate("/dashboard");
+        } 
+    }, [loggedIn, navigate]);
 
     return (
         <div className="bg-sky-300 h-screen flex justify-center">
