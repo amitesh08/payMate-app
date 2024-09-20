@@ -23,7 +23,7 @@ export default function Users(){
             <div className="my-2">
                 <input onChange={(e)=> {
                     setFilter(e.target.value)}}
-                    type="text" placeholder="Search users..." className="w-full px-2 py-1 border rounded border-slate-200"></input>
+                    type="text" placeholder="Search users..." className="w-1/2 px-2 py-1 border rounded border-slate-200"></input>
             </div>
             <div>
             {users.map(user => <User key={user.id} user={user} />)}
