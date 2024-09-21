@@ -1,12 +1,13 @@
 import axios from "axios";
 import React, { useState } from "react"
-import { useSearchParams } from "react-router-dom"
+import { useNavigate, useSearchParams } from "react-router-dom"
 
 export default function SendMoney(){
     const [ searchParams] = useSearchParams();
     const id = searchParams.get("id");
     const name = searchParams.get("name");
     const [amount, setAmount] = useState(0)
+    const navigate = useNavigate();
 
     return (
         <div className="flex justify-center h-screen bg-sky-300">
@@ -52,7 +53,14 @@ export default function SendMoney(){
                                 headers: {
                                     Authorization: "Bearer " + localStorage.getItem("token")
                                 }
-                            })
+                        }).then(res => {
+                            if (res.data.message) { // Adjust the condition based on your API's response
+                                alert(res.data.message);
+                                navigate("/dashboard");
+                            } else {
+                                alert("Transfer failed: ");
+                            }
+                        })
                     }}  
                     className="justify-center rounded-md text-sm font-medium ring-offset-background transition-colors h-10 px-4 py-2 w-full bg-green-500 text-white">
                         Initiate Transfer
