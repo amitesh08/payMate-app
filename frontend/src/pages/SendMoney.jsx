@@ -54,7 +54,7 @@ export default function SendMoney(){
                                     Authorization: "Bearer " + localStorage.getItem("token")
                                 }
                         }).then(res => {
-                            if (res.data.message) { // Adjust the condition based on your API's response
+                            if (res.data.message) { 
                                 alert(res.data.message);
                                 navigate("/dashboard");
                             } else {
