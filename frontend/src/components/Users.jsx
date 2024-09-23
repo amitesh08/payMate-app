@@ -2,18 +2,21 @@ import { useEffect, useState } from "react";
 import Button from "./Button";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import useDebounce from "../hooks/useDebounce";
 
 
 export default function Users(){
     const [users, setUsers] = useState([]);
     const [filter, setFilter] = useState("");
 
+    const debouncedValue = useDebounce(filter, 400);  //send req after a delay
+
     useEffect(()=> {
-        axios.get("http://localhost:3000/api/v1/user/bulk?filter=" + filter)
+        axios.get("http://localhost:3000/api/v1/user/bulk?filter=" + debouncedValue)
             .then((response) => {
                 setUsers(response.data.user)
             })
-    },[filter])
+    },[debouncedValue])
     
     return (
         <>
